@@ -1,0 +1,38 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div >
+        
+            <h1><= message %></h1>
+          
+        </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert Message</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <script>
+        // Set your message here
+        const message = "<%= message %>";
+
+        // Trigger an alert with the message
+        alert(message);
+
+        // Redirect to the "/contact" page after the user clicks "OK"
+        window.location.href = "http://localhost:8080/contact";
+    </script>
+</body>
+</html>
+
+

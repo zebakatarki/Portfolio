@@ -1,0 +1,130 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .card {
+    width: calc(25% - 2rem);
+    margin: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    float: left;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width: 992px) {
+    .card {
+      width: calc(33.33% - 2rem);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .card {
+      width: calc(50% - 2rem);
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .card {
+      width: calc(100% - 2rem);
+    }
+  }
+</style>
+
+
+<!-- <section style="margin-top: auto;"> -->
+  <section>
+  <div style="display: inline-block">
+  <h1 style="font-size: 50px;">Frontend</h1>
+
+  <div class="card">
+    <img src="images/html.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h4 style="font-size: 1.50rem; margin-bottom: 1rem;">Hyper Text Markup Language</h4>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Structured web content for building user interfaces and organizing information.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/css.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">Cascading Style Sheet</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Styling language to design visually appealing and responsive web layouts.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/js.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">JavaScript</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Dynamic scripting language for interactive web functionality and behavior.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/react.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">React.JS</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Declarative JavaScript library for building UI components and single-page applications.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/bootstrap.jpg" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">Bootstrap</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Front-end framework for developing responsive and mobile-first web projects with ease.</p>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img src="images/tailwind.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">Tailwind CSS</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Utility-first CSS framework for rapidly building custom designs with minimal abstraction.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/redux.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">Redux</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Predictable state container for managing application state across JavaScript applications.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+<!-- </section>   -->
+
+<!-- <section style="display: block"> -->
+  <section style="display: block">  
+  <h1 style="font-size: 50px;">Backend</h1>
+  <div class="card">
+    <img src="images/mongoDB.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">MongoDB</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Flexible NoSQL database for scalable and efficient data storage.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/express.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1.50rem;">Express.js</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Minimalist web application framework for Node.js, facilitating server-side development.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/nodejs.jpg" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">Node.js</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Runtime environment for executing JavaScript code outside of a browser, enabling server-side scripting.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/mysql.png" style="width: 100%; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" alt="html">
+    <div style="padding: 1rem;">
+      <h5 style="font-size: 1.50rem; margin-bottom: 1rem;">MySQL</h5>
+      <p style="font-size: 1.15rem; margin-bottom: 1rem;">Structured Query Language (SQL) - the standard language for relational database management systems, facilitating efficient data manipulation, querying, and management.</p>
+    </div>
+  </div>
+    
+</section>
+<!-- </section> -->
+
+
+
+
