@@ -2,6 +2,8 @@ if(process.env.NODE_ENV !="production"){
     require("dotenv").config();
 }
 
+const port = process.env.PORT || 8080;
+
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
@@ -145,9 +147,10 @@ app.get("/trial",(req,res)=>{
     res.render("templates/thanks.ejs");
 })
 
-app.listen(8080, ()=>{
+app.listen(port, ()=>{
     console.log("Server is listening to port 8080");
 });
+
 
 
 // The placement of these script tags depends on your specific requirements and preferences:
