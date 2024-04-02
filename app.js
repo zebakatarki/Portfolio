@@ -12,6 +12,8 @@ const ejsMate = require("ejs-mate");
 const Contacts = require("./models/contact.js"); //User Schema 
 const ExpressError = require("./utils/ExpressError.js");
 
+// https://portfolio-og4q.onrender.com/
+
 // // const mongo_url="mongodb://127.0.0.1:27017/portfolio";
 const dbUrl=process.env.ATLASDB_URL;
 // const dbUrl="mongodb+srv://zkatarki:jwvvrI19GIDed7Jm@cluster0.kvstvno.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
