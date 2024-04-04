@@ -24,11 +24,6 @@ const contactSchema = new mongoose.Schema({
         }
     },
 
-    // number:{
-    //     type:String,
-    //     min:10,
-    //     max:10,
-    // },
     message:{
         type:String,
         required:true
