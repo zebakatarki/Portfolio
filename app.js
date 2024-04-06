@@ -59,14 +59,30 @@ app.get("/contact",(req,res)=>{
     res.render("templates/contact.ejs");
 })
 
-app.post("/contact",async(req,res)=>{
+// app.post("/contact",async(req,res)=>{
+//     console.log("Working");
+//     console.log(req.body.contact);
+//     const newContat = new Contacts(req.body.contact);
+//     let savedContact = await newContat.save();
+//     console.log("Saved listing with map",savedContact);
+//     res.render("templates/thanks.ejs");    
+// });
+
+app.post("/contact", async (req, res) => {
     console.log("Working");
     console.log(req.body.contact);
-    const newContat = new Contacts(req.body.contact);
-    let savedContact = await newContat.save();
-    console.log("Saved listing with map",savedContact);
-    res.render("templates/thanks.ejs");    
+    const newContact = new Contacts(req.body.contact);
+    try {
+        let savedContact = await db.collection.insertOne(newContact, { maxTimeMS: 30000 });
+        console.log("Saved contact:", savedContact);
+        res.render("templates/thanks.ejs");
+    } catch (error) {
+        console.error("Error saving contact:", error);
+        // Handle the error accordingly
+        res.status(500).send("Error saving contact");
+    }
 });
+
 
 app.get("/services",(req,res)=>{
     console.log("Contact");
