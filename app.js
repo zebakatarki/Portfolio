@@ -13,6 +13,7 @@ const Contacts = require("./models/contact.js");
 const ExpressError = require("./utils/ExpressError.js");
 
 const dbUrl=process.env.ATLASDB_URL;
+// const dbUrl="mongodb://127.0.0.1:27017/portfolio";
 
 main() 
 .then(()=>{
@@ -25,6 +26,8 @@ main()
 async function main(){
     await mongoose.connect(dbUrl);
 } 
+
+// mongoose.connect("mongodb://127.0.0.1:27017/portfolio", {useNewUrlParser:true});
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
@@ -68,12 +71,28 @@ app.get("/contact",(req,res)=>{
 //     res.render("templates/thanks.ejs");    
 // });
 
+// app.post("/contact", async (req, res) => {
+//     console.log("Working");
+//     console.log(req.body.contact);
+//     const newContact = new Contacts(req.body.contact);
+//     try {
+//         let savedContact = await db.collection.insertOne(newContact, { maxTimeMS: 30000 });
+//         console.log("Saved contact:", savedContact);
+//         res.render("templates/thanks.ejs");
+//     } catch (error) {
+//         console.error("Error saving contact:", error);
+//         // Handle the error accordingly
+//         res.status(500).send("Error saving contact");
+//     }
+// });
+
 app.post("/contact", async (req, res) => {
     console.log("Working");
     console.log(req.body.contact);
     const newContact = new Contacts(req.body.contact);
     try {
-        let savedContact = await db.collection.insertOne(newContact, { maxTimeMS: 30000 });
+        // Here is where you should add the corrected insertion code
+        let savedContact = await db.collection('contacts').insertOne(newContact, { maxTimeMS: 30000 });
         console.log("Saved contact:", savedContact);
         res.render("templates/thanks.ejs");
     } catch (error) {
@@ -82,6 +101,8 @@ app.post("/contact", async (req, res) => {
         res.status(500).send("Error saving contact");
     }
 });
+
+
 
 
 app.get("/services",(req,res)=>{
