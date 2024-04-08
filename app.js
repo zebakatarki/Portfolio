@@ -71,6 +71,28 @@ app.get("/contact",(req,res)=>{
 //     res.render("templates/thanks.ejs");
 // });
 
+// app.post("/contact", async (req, res) => {
+//     try {
+//         console.log("Working");
+//         console.log(req.body.contact);
+        
+//         // Validate req.body.contact here if needed
+        
+//         const newContact = new Contacts(req.body.contact);
+//         let savedContact = await newContact.save();
+        
+//         console.log("Saved contact:", savedContact);
+        
+//         // Send a success response
+//         res.render("templates/thanks.ejs");
+//     } catch (error) {
+//         // Handle any errors that occur during the database operation
+//         console.error("Error saving contact:", error);
+//         // Send an error response or render an error page
+//         res.status(500).send(error.message);
+//     }
+// });
+
 app.post("/contact", async (req, res) => {
     try {
         console.log("Working");
@@ -79,7 +101,8 @@ app.post("/contact", async (req, res) => {
         // Validate req.body.contact here if needed
         
         const newContact = new Contacts(req.body.contact);
-        let savedContact = await newContact.save();
+        // Adjust the timeout option as needed (e.g., { timeout: 15000 } for 15 seconds)
+        let savedContact = await newContact.save({ timeout: 15000 });
         
         console.log("Saved contact:", savedContact);
         
@@ -92,6 +115,7 @@ app.post("/contact", async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
 
 
 
