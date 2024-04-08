@@ -89,7 +89,7 @@ app.post("/contact", async (req, res) => {
         // Handle any errors that occur during the database operation
         console.error("Error saving contact:", error);
         // Send an error response or render an error page
-        res.status(500).send("An error occurred while saving the contact.");
+        res.status(500).send(error);
     }
 });
 
