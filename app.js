@@ -62,45 +62,36 @@ app.get("/contact",(req,res)=>{
     res.render("templates/contact.ejs");
 })
 
-app.post("/contact",async(req,res)=>{
-    console.log("Working");
-    console.log(req.body.contact);
-    const newContact = new Contacts(req.body.contact);
-    let savedContact = await newContact.save();
-    console.log("Saved listing with map",savedContact);
-    res.render("templates/thanks.ejs");    
+// app.post("/contact",async(req,res)=>{
+//     console.log("Working");
+//     console.log(req.body.contact);
+//     const newContact = new Contacts(req.body.contact);
+//     let savedContact = await newContact.save();
+//     console.log("Saved listing with map",savedContact);
+//     res.render("templates/thanks.ejs");
+// });
+
+app.post("/contact", async (req, res) => {
+    try {
+        console.log("Working");
+        console.log(req.body.contact);
+        
+        // Validate req.body.contact here if needed
+        
+        const newContact = new Contacts(req.body.contact);
+        let savedContact = await newContact.save();
+        
+        console.log("Saved contact:", savedContact);
+        
+        // Send a success response
+        res.render("templates/thanks.ejs");
+    } catch (error) {
+        // Handle any errors that occur during the database operation
+        console.error("Error saving contact:", error);
+        // Send an error response or render an error page
+        res.status(500).send("An error occurred while saving the contact.");
+    }
 });
-
-// app.post("/contact", async (req, res) => {
-//     console.log("Working");
-//     console.log(req.body.contact);
-//     const newContact = new Contacts(req.body.contact);
-//     try {
-//         let savedContact = await db.collection.insertOne(newContact, { maxTimeMS: 30000 });
-//         console.log("Saved contact:", savedContact);
-//         res.render("templates/thanks.ejs");
-//     } catch (error) {
-//         console.error("Error saving contact:", error);
-//         // Handle the error accordingly
-//         res.status(500).send("Error saving contact");
-//     }
-// });
-
-// app.post("/contact", async (req, res) => {
-//     console.log("Working");
-//     console.log(req.body.contact);
-//     const newContact = new Contacts(req.body.contact);
-//     try {
-//         // Here is where you should add the corrected insertion code
-//         let savedContact = await db.collection('contacts').insertOne(newContact, { maxTimeMS: 30000 });
-//         console.log("Saved contact:", savedContact);
-//         res.render("templates/thanks.ejs");
-//     } catch (error) {
-//         console.error("Error saving contact:", error);
-//         // Handle the error accordingly
-//         res.status(500).send("Error saving contact");
-//     }
-// });
 
 
 
