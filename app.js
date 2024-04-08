@@ -13,7 +13,6 @@ const Contacts = require("./models/contact.js");
 const ExpressError = require("./utils/ExpressError.js");
 
 const dbUrl=process.env.ATLASDB_URL;
-// const dbUrl="mongodb://127.0.0.1:27017/portfolio";
 
 main() 
 .then(()=>{
@@ -26,8 +25,6 @@ main()
 async function main(){
     await mongoose.connect(dbUrl);
 } 
-
-// mongoose.connect("mongodb://127.0.0.1:27017/portfolio", {useNewUrlParser:true});
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
@@ -115,10 +112,6 @@ app.post("/contact", async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
-
-
-
 
 app.get("/services",(req,res)=>{
     console.log("Contact");
