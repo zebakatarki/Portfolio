@@ -1,6 +1,7 @@
 if(process.env.NODE_ENV !="production"){
     require("dotenv").config();
 }
+const nodemailer = require('nodemailer');
 
 const port = process.env.PORT || 8080;
 
@@ -11,12 +12,13 @@ const path=require("path");
 const ejsMate = require("ejs-mate");
 const Contacts = require("./models/contact.js"); 
 const ExpressError = require("./utils/ExpressError.js");
+const contact = require("./models/contact.js");
 
 const dbUrl=process.env.ATLASDB_URL;
 
 main() 
 .then(()=>{
-    console.log("Connected to MongooDB Of Major Project");
+    console.log("Connected to MongooDB ");
 })
 .catch((err)=>{
     console.log("MongoDB Error",err);
@@ -59,26 +61,57 @@ app.get("/contact",(req,res)=>{
     res.render("templates/contact.ejs");
 })
 
-app.post("/contact", async (req, res) => {
+//with email functionality
+app.post('/contact', async (req, res) => {
     try {
-        console.log("Working");
-        console.log(req.body.contact);
-        
-        // Validate req.body.contact here if needed
-        
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USERNAME, //Admin email
+                pass: process.env.EMAIL_PASSWORD, //Password from google
+            },
+        });
+
+        const userEmail = req.body.contact.email;
+        const userName = req.body.contact.name;
+        const userNumber = req.body.contact.number;
+        const userMessage = req.body.contact.message;
+        const emailSubject = req.body.contact.emailsub;
+
+        //Thank you mail for sender(User)
+        const toUser = {
+            from: process.env.EMAIL_USERNAME, //Admin mail
+            to: req.body.contact.email, //User mail
+            subject: 'Thank You Mail',
+            text: `Thank you from ${process.env.EMAIL_USERNAME}. we will get back to you shortly.`
+        };
+        const Userinfo = await transporter.sendMail(toUser);
+
+        //mail for Admin with information of sender
+        const toAdmin = {
+            from: req.body.contact.email, //User email
+            to: process.env.EMAIL_USERNAME, //Admin email
+            subject: emailSubject,
+            text: `
+                From: ${userEmail}
+                Name: ${userName}
+                Number: ${userNumber}
+                Message: ${userMessage}
+            `
+        };
+        const Admininfo = await transporter.sendMail(toAdmin);
+
         const newContact = new Contacts(req.body.contact);
-        // Adjust the timeout option as needed (e.g., { timeout: 15000 } for 15 seconds)
-        let savedContact = await newContact.save({ timeout: 15000 });
+        let savedContact = await newContact.save({ timeout: 15000 }); //saving data in database
         
+        //Testers
         console.log("Saved contact:", savedContact);
-        
-        // Send a success response
+        console.log("Message sent: ", Userinfo.response);
+        console.log("Message sent: ", Admininfo.response);
         res.render("templates/thanks.ejs");
     } catch (error) {
-        // Handle any errors that occur during the database operation
-        console.error("Error saving contact:", error);
-        // Send an error response or render an error page
-        res.status(500).send(error.message);
+        console.error("Error occurred while sending email:", error);
+        res.status(500).json({ error: 'Failed to send email.' });
     }
 });
 

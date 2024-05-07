@@ -6,7 +6,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon app.js"
   },
   "author": "Zeba",
   "license": "ISC",
@@ -16,6 +17,8 @@
     "ejs-mate": "^4.0.0",
     "express": "^5.0.0-beta.2",
     "mongoose": "^8.2.3",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.0",
     "path": "^0.12.7"
   },
   "keywords": [],
